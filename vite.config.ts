@@ -1,0 +1,42 @@
+import babel from '@rolldown/plugin-babel';
+import tailwindcss from '@tailwindcss/vite';
+import react, { reactCompilerPreset } from '@vitejs/plugin-react';
+import path from 'path';
+import { defineConfig, type PluginOption } from 'vite';
+import { analyzer } from 'vite-bundle-analyzer';
+import svgr from 'vite-plugin-svgr';
+
+const plugins: PluginOption[] = [react(), babel({ presets: [reactCompilerPreset()] }), tailwindcss(), svgr()];
+
+// https://vite.dev/config/
+export default defineConfig({
+   plugins,
+   resolve: {
+      alias: {
+         '@': path.resolve(__dirname, 'src'),
+      },
+   },
+   build: {
+      chunkSizeWarningLimit: 2000,
+      cssMinify: true,
+      minify: true,
+   },
+   preview: {
+      port: 9900,
+   },
+   optimizeDeps: {
+      include: ['dayjs'],
+   },
+   // run on development
+   ...(process.env.NODE_ENV === 'development' && {
+      plugins: [
+         ...plugins,
+         analyzer({
+            analyzerPort: 8008,
+         }),
+      ],
+      server: {
+         port: 9900,
+      },
+   }),
+});

@@ -1,0 +1,27 @@
+@import "./tailwind.css";
+
+main {
+    grid-template:
+    "aside header" 60px
+    "aside section" auto / 280px;
+
+    aside {
+        grid-area: aside;
+
+        @apply p-4;
+    }
+
+    header {
+        grid-area: header;
+
+        @apply p-4;
+    }
+
+    section {
+        grid-area: section;
+
+        @apply p-4;
+    }
+
+    @apply grid min-h-screen;
+}

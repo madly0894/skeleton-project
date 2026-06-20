@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-recess-order"
+  ],
+  "plugins": [
+    "stylelint-order"
+  ],
+  "rules": {
+    "at-rule-no-unknown": [true, { "ignoreAtRules": ["theme", "custom-variant"] }],
+    "at-rule-no-deprecated": [true, { "ignoreAtRules": ["apply"] }],
+    "media-feature-range-notation": "prefix",
+    "alpha-value-notation": "number",
+    "no-invalid-double-slash-comments": true,
+    "selector-class-pattern": null,
+    "import-notation": "string"
+  }
+}

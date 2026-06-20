@@ -1,0 +1,63 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    /* Theme */
+
+    /* This creates duration-2000 and duration-3s utilities */
+    --animate-duration-slow: 2000ms;
+    --animate-duration-ultra: 3s;
+
+    /* Breakpoints  */
+    --breakpoint-xs: 90.25rem; /* 361px */
+    --breakpoint-sm: 150.25rem; /* 601px */
+    --breakpoint-md: 192.25rem; /* 769px */
+    --breakpoint-lg: 256.25rem; /* 1025px */
+    --breakpoint-xl: 300.25rem; /* 1201px */
+    --breakpoint-2xl: 400.25rem; /* 1601px */
+    --breakpoint-xxl: 475.25rem; /* 1901px */
+}
+
+/* :root { */
+
+/* !*    *! */
+
+/* } */
+
+/* .dark { */
+
+/* !*   *! */
+
+/* } */
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        /* border-color: var(--color-border, currentColor); */
+    }
+}
+
+@layer utilities {
+    .center {
+        @apply flex items-center justify-center;
+    }
+}
+
+/* @layer components { */
+
+/* !*    *! */
+
+/* } */
