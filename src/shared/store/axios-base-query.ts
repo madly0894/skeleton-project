@@ -17,7 +17,7 @@ const axiosBaseQuery =
          });
 
          return {
-            data: (result.data.response?.pagination ? result.data.response : result.data.response?.data) ?? result.data,
+            data: (result.data.response?.pagination ? result.data.response : result.data.response?.data) ?? null,
             meta: {
                config: result.config,
                headers: result.headers,

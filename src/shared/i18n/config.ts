@@ -5,8 +5,6 @@ import ChainedBackend from 'i18next-chained-backend';
 import HttpBackend, { type HttpBackendOptions, type RequestCallback } from 'i18next-http-backend';
 import resourcesToBackend from 'i18next-resources-to-backend';
 
-import ROUTES from '@/shared/common/routes';
-
 import $api from '../common/axios';
 import history from '../common/history';
 import DateUtils from '../utils/date';
@@ -29,7 +27,7 @@ export const languages: { key: TLang; label: string; abbr: string }[] = [
 const path = removeAllLeadingSlashes(history.location.pathname);
 const arrPath = path.split('/');
 const currentLang = languageCodes.includes(arrPath[0]) && arrPath[0];
-const pathWithoutLang = arrPath[0].length <= 2 && (arrPath.slice(1).join('/') || ROUTES.HOME.path);
+const pathWithoutLang = arrPath[0].length <= 2 && (arrPath.slice(1).join('/') || path);
 const currentLangWithoutFallbackLng = (!!currentLang && (currentLang === fallbackLng ? '' : `/${currentLang}`)) || '';
 
 const LanguageDetector: LanguageDetectorModule = {
