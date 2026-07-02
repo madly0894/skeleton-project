@@ -27,7 +27,7 @@ export const languages: { key: TLang; label: string; abbr: string }[] = [
 const path = removeAllLeadingSlashes(history.location.pathname);
 const arrPath = path.split('/');
 const currentLang = languageCodes.includes(arrPath[0]) && arrPath[0];
-const pathWithoutLang = arrPath[0].length <= 2 && (arrPath.slice(1).join('/') || removeLanguageCode(path));
+const pathWithoutLang = arrPath[0].length <= 2 && arrPath.slice(1).join('/');
 const currentLangWithoutFallbackLng = (!!currentLang && (currentLang === fallbackLng ? '' : `/${currentLang}`)) || '';
 
 const LanguageDetector: LanguageDetectorModule = {
