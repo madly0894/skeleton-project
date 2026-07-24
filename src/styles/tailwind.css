@@ -5,6 +5,7 @@
 
 @theme inline {
     /* Theme */
+    --color-border: var(--color-border);
 
     /* This creates duration-2000 and duration-3s utilities */
     --animate-duration-slow: 2000ms;
@@ -20,17 +21,13 @@
     --breakpoint-xxl: 640rem; /* 2560px */
 }
 
-/* :root { */
+:root {
+    --color-border: #EAECEF;
+}
 
-/* !*    *! */
-
-/* } */
-
-/* .dark { */
-
-/* !*   *! */
-
-/* } */
+.dark {
+    --color-border: #3C3C3E;
+}
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -46,7 +43,7 @@
     ::before,
     ::backdrop,
     ::file-selector-button {
-        /* border-color: var(--color-border, currentColor); */
+        border-color: var(--color-border, currentColor);
     }
 }
 
