@@ -1,8 +1,9 @@
-import type { ManipulateType, OpUnitType } from 'dayjs';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import timezonePlugin from 'dayjs/plugin/timezone';
 import utcPlugin from 'dayjs/plugin/utc';
+
+import type { ManipulateType, OpUnitType } from 'dayjs';
 
 import dateLocale from '../i18n/date-locale';
 import { getLanguageCode } from '../i18n/utils';

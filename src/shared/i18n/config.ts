@@ -10,7 +10,7 @@ import history from '../common/history';
 import DateUtils from '../utils/date';
 
 import dateLocale from './date-locale';
-import {getLanguageCode, removeAllLeadingSlashes, removeLanguageCode, setLanguageCode} from './utils';
+import { getLanguageCode, removeAllLeadingSlashes, setLanguageCode } from './utils';
 
 export type TLang = 'en' | 'az' | 'ru' | 'tr';
 export const languageKey = 'locale';

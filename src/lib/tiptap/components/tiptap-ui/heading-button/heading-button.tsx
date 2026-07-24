@@ -1,11 +1,12 @@
 import { forwardRef, useCallback } from 'react';
 
+import type { ButtonProps } from '../../tiptap-ui-primitive/button';
+
 import { useTiptapEditor } from '../../../hooks/use-tiptap-editor';
 // --- Lib ---
 import { parseShortcutKeys } from '../../../lib/tiptap-utils';
 import { Badge } from '../../tiptap-ui-primitive/badge';
 // --- UI Primitives ---
-import type { ButtonProps } from '../../tiptap-ui-primitive/button';
 import { Button } from '../../tiptap-ui-primitive/button';
 
 // --- Tiptap UI ---

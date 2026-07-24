@@ -1,7 +1,8 @@
-import type { InternalAxiosRequestConfig } from 'axios';
 import axios, { AxiosError } from 'axios';
 import queryString from 'query-string';
 import { toast } from 'sonner';
+
+import type { InternalAxiosRequestConfig } from 'axios';
 
 import StorageUtils from '../utils/storage';
 

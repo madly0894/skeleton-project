@@ -1,11 +1,12 @@
 import { forwardRef, useCallback, useState } from 'react';
 
 // --- Hooks ---
+import type { ButtonProps } from '../../tiptap-ui-primitive/button';
+
 import { useTiptapEditor } from '../../../hooks/use-tiptap-editor';
 // --- Icons ---
 import { ChevronDownIcon } from '../../tiptap-icons/chevron-down-icon';
 // --- UI Primitives ---
-import type { ButtonProps } from '../../tiptap-ui-primitive/button';
 import { Button } from '../../tiptap-ui-primitive/button';
 import {
    DropdownMenu,

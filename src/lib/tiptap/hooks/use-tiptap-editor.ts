@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import type { Editor } from '@tiptap/react';
 import { useCurrentEditor, useEditorState } from '@tiptap/react';
+
+import type { Editor } from '@tiptap/react';
 
 function getActivePageEditor(editor: Editor): Editor | null {
    const storage = editor.storage as unknown as Record<string, unknown>;

@@ -1,23 +1,25 @@
 import { forwardRef, useMemo, useRef, useState } from 'react';
-import type { Editor } from '@tiptap/react';
 
 import useMediaQuery from '@/shared/hooks/useMediaQuery';
 
+import type { Editor } from '@tiptap/react';
+
 // --- Hooks ---
+import type { ButtonProps } from '../../tiptap-ui-primitive/button';
+import type { HighlightColor, UseColorHighlightConfig } from '../color-highlight-button';
+
 import { useMenuNavigation } from '../../../hooks/use-menu-navigation';
 import { useTiptapEditor } from '../../../hooks/use-tiptap-editor';
 // --- Icons ---
 import { BanIcon } from '../../tiptap-icons/ban-icon';
 import { HighlighterIcon } from '../../tiptap-icons/highlighter-icon';
 // --- UI Primitives ---
-import type { ButtonProps } from '../../tiptap-ui-primitive/button';
 import { Button } from '../../tiptap-ui-primitive/button';
 import { ButtonGroup } from '../../tiptap-ui-primitive/button-group';
-import { Card, CardBody, CardItemGroup } from '../../tiptap-ui-primitive/card';
-import { Popover, PopoverContent, PopoverTrigger } from '../../tiptap-ui-primitive/popover';
 import { Separator } from '../../tiptap-ui-primitive/separator';
+import { Popover, PopoverContent, PopoverTrigger } from '../../tiptap-ui-primitive/popover';
+import { Card, CardBody, CardItemGroup } from '../../tiptap-ui-primitive/card';
 // --- Tiptap UI ---
-import type { HighlightColor, UseColorHighlightConfig } from '../color-highlight-button';
 import { ColorHighlightButton, pickHighlightColorsByValue, useColorHighlight } from '../color-highlight-button';
 
 export interface ColorHighlightPopoverContentProps {

@@ -1,12 +1,15 @@
 import { forwardRef, useCallback, useEffect, useState } from 'react';
-import type { Editor } from '@tiptap/react';
 
 import { URL_EXP } from '@/shared/common/constants';
 import useMediaQuery from '@/shared/hooks/useMediaQuery';
 
+import type { Editor } from '@tiptap/react';
+
 import './link-popover.scss';
 
 // --- Hooks ---
+import type { ButtonProps } from '../../tiptap-ui-primitive/button';
+
 import { useTiptapEditor } from '../../../hooks/use-tiptap-editor';
 // --- Icons ---
 import { CornerDownLeftIcon } from '../../tiptap-icons/corner-down-left-icon';
@@ -14,7 +17,6 @@ import { ExternalLinkIcon } from '../../tiptap-icons/external-link-icon';
 import { LinkIcon } from '../../tiptap-icons/link-icon';
 import { TrashIcon } from '../../tiptap-icons/trash-icon';
 // --- UI Primitives ---
-import type { ButtonProps } from '../../tiptap-ui-primitive/button';
 import { Button } from '../../tiptap-ui-primitive/button';
 import { ButtonGroup } from '../../tiptap-ui-primitive/button-group';
 import { Card, CardBody, CardItemGroup } from '../../tiptap-ui-primitive/card';

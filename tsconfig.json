@@ -7,7 +7,7 @@
   /* Alias */
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/tiptap/*"]
+      "@/*": ["./src/*"]
     }
   }
 }

@@ -1,9 +1,10 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
-import path from 'path';
 import { defineConfig, type PluginOption } from 'vite';
 import { analyzer } from 'vite-bundle-analyzer';
 import svgr from 'vite-plugin-svgr';
+
+import path from 'path';
 
 const plugins: PluginOption[] = [react(), tailwindcss(), svgr()];
 

@@ -1,5 +1,6 @@
-import type { NodeWithPos } from '@tiptap/core';
 import { Extension } from '@tiptap/core';
+
+import type { NodeWithPos } from '@tiptap/core';
 import type { EditorState, Transaction } from '@tiptap/pm/state';
 
 import { getSelectedNodesOfType, updateNodesAttr } from '../../lib/tiptap-utils';

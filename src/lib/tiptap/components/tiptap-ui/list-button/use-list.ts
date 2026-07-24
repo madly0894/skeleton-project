@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { NodeSelection, TextSelection } from '@tiptap/pm/state';
+
 import type { Editor } from '@tiptap/react';
 
 // --- Hooks ---

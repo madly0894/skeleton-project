@@ -1,6 +1,7 @@
-import type { Action, ThunkAction } from '@reduxjs/toolkit';
 import { configureStore } from '@reduxjs/toolkit';
 import { type PersistConfig, persistReducer, persistStore } from 'redux-persist';
+
+import type { Action, ThunkAction } from '@reduxjs/toolkit';
 
 import BaseUtils from '../utils/base';
 

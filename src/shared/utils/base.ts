@@ -1,9 +1,7 @@
-import { CONTENT_TYPES, CURRENCIES } from '@/lib/common/constants';
-import { setHref } from '@/lib/i18n/utils';
+import type { IClientInfo } from '../common/models';
 
-import type { IClientInfo, TIcon } from './models';
-
-import icons from './icons';
+import { CURRENCIES } from '../common/constants';
+import { setHref } from '../i18n/utils';
 
 type InAppInfo = Required<Pick<IClientInfo, 'app' | 'browser'>>;
 
@@ -75,8 +73,8 @@ export default class Utils {
 
    static replaceProdUrlToLocalUrl(url: string) {
       return setHref(undefined, this.isDev() ? url.replace('filemg-dev.bestcomp.net', 'localhost:9405') : url).replace(
-          /\?.*$/,
-          '',
+         /\?.*$/,
+         '',
       );
    }
 
