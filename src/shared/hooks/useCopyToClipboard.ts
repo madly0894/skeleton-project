@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { type ExternalToast, toast } from 'sonner';
 
+import { AUTO_CLOSE } from '@/shared/common/constants';
+
 type TProps = {
    delay?: number;
    messageText?: string;
 };
 
-export default function useCopyToClipboard({ delay = 3000, messageText = 'Link copied!' }: TProps = {}) {
+export default function useCopyToClipboard({ delay = AUTO_CLOSE, messageText = 'Link copied!' }: TProps = {}) {
    const [copied, setCopied] = useState<boolean>(false);
 
    const copy = async (text: string) => {

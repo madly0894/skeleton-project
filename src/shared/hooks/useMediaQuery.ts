@@ -2,7 +2,16 @@ import { useRef, useSyncExternalStore } from 'react';
 
 type Queries = Record<string, string>;
 
-export default function useMediaQuery<T extends Queries>(queries: T): Record<keyof T, boolean> {
+export const breakpoints = {
+   isMobile: '(max-width: 639px)',
+   isMobileL: '(max-width: 767px)',
+   isTablet: '(min-width: 768px) and (max-width: 1023px)',
+   isDesktop: '(min-width: 1024px)',
+} as const satisfies Queries;
+
+export default function useMediaQuery<T extends Queries = typeof breakpoints>(
+   queries: T = breakpoints as unknown as T,
+): Record<keyof T, boolean> {
    const keys = Object.keys(queries) as (keyof T)[];
 
    const mediasRef = useRef<Map<keyof T, MediaQueryList>>(
