@@ -1,5 +1,7 @@
 import { isFulfilled, type Middleware } from '@reduxjs/toolkit';
 
+import ROUTES from '@/shared/common/routes';
+
 import history from '../common/history';
 import { getHref } from '../i18n/utils';
 import StorageUtils from '../utils/storage';
@@ -16,10 +18,9 @@ const authMiddleware: Middleware = storeAPI => next => action => {
       (isFulfilled(action) && (action as any).meta?.arg?.endpointName === 'logout') ||
       (action as any).payload?.status === 401
    ) {
-      // storeAPI.dispatch(clearAuth());
       storeAPI.dispatch(emptySplitApi.internalActions.resetApiState());
       StorageUtils.removeToken();
-      history.replace(getHref('/auth/login'));
+      history.replace(getHref(ROUTES.LOGIN.to));
    }
 
    return next(action);
