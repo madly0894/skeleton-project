@@ -1,13 +1,11 @@
 import js from '@eslint/js'
 import globals from 'globals'
-// import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 import eslintPrettier from 'eslint-plugin-prettier';
 import eslintImportX from 'eslint-plugin-import-x';
 import eslintUnusedImports from 'eslint-plugin-unused-imports';
-import eslintSimpleImportSort from 'eslint-plugin-simple-import-sort';
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -16,25 +14,46 @@ export default defineConfig([
     extends: [
       js.configs.recommended,
       tseslint.configs.recommended,
-      // reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
     ],
     plugins: {
       prettier: eslintPrettier,
       'import-x': eslintImportX,
       'unused-imports': eslintUnusedImports,
-      'simple-import-sort': eslintSimpleImportSort,
     },
     languageOptions: {
       globals: globals.browser,
     },
     rules: {
-      'no-control-regex': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
       'react-refresh/only-export-components': 'off',
-      // 'react/no-unknown-property': ['error', { ignore: ['f-inert'] }],
+      // 'no-unused-vars': 'off',
+      'no-undef': 'off',
+      'no-control-regex': 'off',
+      // 'prefer-const': 'error',
       'import-x/no-dynamic-require': 'warn',
       'import-x/no-duplicates': 'error',
+      'import-x/order': [
+        'error',
+        {
+          groups: ['external', 'internal', 'type', 'builtin', 'parent', 'sibling', 'index'],
+          pathGroups: [
+            {
+              pattern: 'react',
+              group: 'external',
+              position: 'before',
+            },
+            {
+              pattern: '@/**',
+              group: 'internal',
+            },
+          ],
+          sortTypesGroup: true,
+          'newlines-between': 'always',
+          'newlines-between-types': 'always',
+        },
+      ],
       'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': [
         'warn',
@@ -78,26 +97,6 @@ export default defineConfig([
           // singleAttributePerLine: 'auto', // default - false
         },
       ],
-      'simple-import-sort/imports': [
-        'error',
-        {
-          groups: [
-            // react и внешние пакеты
-            ['^react', '^@?\\w'],
-            // внутренние алиасы
-            ['^(@|components)(/.*|$)'],
-            // side effect imports
-            ['^\\u0000'],
-            // parent imports, .. последний
-            ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
-            // relative imports, . последний
-            ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
-            // стили
-            ['^.+\\.css$', '^.+/css(/.*)?$'],
-          ],
-        },
-      ],
-      'simple-import-sort/exports': 'error',
     }
   },
 ])

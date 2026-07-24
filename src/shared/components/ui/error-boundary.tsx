@@ -5,7 +5,7 @@ import BaseUtils from '@/shared/utils/base';
 function fallbackRender({ error, resetErrorBoundary }: FallbackProps) {
    return (
       <div className='center h-dvh px-4'>
-         <div role='alert' className='p-4 text-center max-w-125 bg-side-gray! z-1'>
+         <div role='alert' className='p-4 text-center max-w-125 z-1'>
             <p>Something went wrong!</p>
             <p className='text-red mt-2.5 mb-3.5 break-all text-xs'>
                {typeof error === 'string' ? error : error instanceof Error ? error.message : 'Failed to load'}

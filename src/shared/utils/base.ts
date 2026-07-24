@@ -1,11 +1,13 @@
-import { CURRENCIES } from '../common/constants';
-// import icons from './icons';
-import type { IClientInfo } from '../common/models';
-import { setHref } from '../i18n/utils';
+import { CONTENT_TYPES, CURRENCIES } from '@/lib/common/constants';
+import { setHref } from '@/lib/i18n/utils';
+
+import type { IClientInfo, TIcon } from './models';
+
+import icons from './icons';
 
 type InAppInfo = Required<Pick<IClientInfo, 'app' | 'browser'>>;
 
-export default class BaseUtils {
+export default class Utils {
    // ---- STATIC ICON MAPS
    static appIcons = {
       teams: 'teams.svg',
@@ -55,6 +57,10 @@ export default class BaseUtils {
       return window.location.hostname === 'filemg-dev.bestcomp.net';
    }
 
+   static isProdMode(): boolean {
+      return window.location.hostname === 'bcloud.az';
+   }
+
    static isDev() {
       return import.meta.env.MODE === 'development';
    }
@@ -69,8 +75,8 @@ export default class BaseUtils {
 
    static replaceProdUrlToLocalUrl(url: string) {
       return setHref(undefined, this.isDev() ? url.replace('filemg-dev.bestcomp.net', 'localhost:9405') : url).replace(
-         /\?.*$/,
-         '',
+          /\?.*$/,
+          '',
       );
    }
 
@@ -86,10 +92,10 @@ export default class BaseUtils {
       return fileName[fileName.length - 1].toLowerCase();
    }
 
-   static removeExtension(filename: string) {
+   static removeExtension = (filename: string) => {
       const ext = this.getExtension(filename);
       return ext ? filename.replace(/\.[^.]+$/, '') : filename;
-   }
+   };
 
    static downloadFile(url: string, filename?: string) {
       const link = document.createElement('a');
@@ -103,9 +109,6 @@ export default class BaseUtils {
    static saveBlob(blob: Blob, filename: string) {
       const url = URL.createObjectURL(blob);
       this.downloadFile(url, filename);
-      this.debounce(() => {
-         URL.revokeObjectURL(url); // Free memory
-      }, 1000)();
    }
 
    static getFileName(filename: string) {
@@ -116,25 +119,6 @@ export default class BaseUtils {
       return str.charAt(0).toUpperCase() + str.slice(1);
    }
 
-   static debounce<T extends (...args: never[]) => void>(
-      callback: T,
-      delay = 0,
-   ): ((...args: Parameters<T>) => void) & { cancel(): void } {
-      let timeoutId: ReturnType<typeof setTimeout> | undefined = undefined;
-
-      const debounced = ((...args: Parameters<T>) => {
-         clearTimeout(timeoutId);
-         timeoutId = setTimeout(() => callback(...args), delay);
-      }) as ((...args: Parameters<T>) => void) & { cancel(): void };
-
-      debounced.cancel = () => {
-         clearTimeout(timeoutId);
-         timeoutId = undefined;
-      };
-
-      return debounced;
-   }
-
    static goToEl(id: string, isEnd = false) {
       const el = document.getElementById(id);
       if (el) {
@@ -142,31 +126,12 @@ export default class BaseUtils {
       }
    }
 
-   // static getIconByContentType({ fileName, contentType }: { fileName: string; contentType?: string }) {
-   //     let icon = '';
-   //
-   //     if (!!contentType && !!CONTENT_TYPES[contentType]) {
-   //         const exts: string[] | undefined = CONTENT_TYPES[contentType];
-   //
-   //         exts.forEach(item => {
-   //             if (this.getExtension(fileName.toLowerCase()) === item) {
-   //                 icon = item;
-   //             } else {
-   //                 icon = this.getExtension(fileName);
-   //             }
-   //         });
-   //     } else {
-   //         icon = this.getExtension(fileName);
-   //     }
-   //
-   //     return icons({
-   //         size: 24,
-   //         color: 'currentColor',
-   //     })[icon as TIcon];
-   // }
-
-   static openURL(url: string) {
-      return window.open(url, '_blank', 'noopener,noreferrer');
+   static openURL(url: string, reload = false) {
+      if (!reload) {
+         window.open(url, '_blank', 'noopener,noreferrer');
+      } else {
+         window.location.href = url;
+      }
    }
 
    static formatBytes(bytes: number = 0): string {
@@ -185,6 +150,11 @@ export default class BaseUtils {
       return `${currency ? CURRENCIES[currency] : ''}${s.slice(0, -2) + '.' + s.slice(-2)}`;
    }
 
+   static formatPercent(value: number): string {
+      const rounded = Math.round(Math.abs(value) * 10) / 10;
+      return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
+   }
+
    static mbToBytes(mb: number) {
       return mb * 1024 * 1024;
    }
@@ -200,58 +170,45 @@ export default class BaseUtils {
       return new Promise(resolve => setTimeout(resolve, ms));
    }
 
-   static getNestedValue(obj: Record<string, never>, path: string) {
+   static getNestedValue = (obj: Record<string, any>, path: string) => {
       return path.split('.').reduce((acc, key) => acc[key], obj);
-   }
+   };
 
    static trim(value: string): string {
       return value.replace(/^\s+/, '');
    }
 
-   static devLog(...args: never[]) {
+   static devLog = (...args: any[]) => {
       if (this.isDevMode() || this.isDev()) {
          console.log(...args);
       }
-   }
-
-   static detectClient(userAgent?: string): IClientInfo {
-      const ua = (userAgent ?? (typeof navigator !== 'undefined' ? navigator.userAgent : '')).toLowerCase();
-
-      // touchPoints только если UA не передан явно (клиентский случай)
-      const touchPoints = userAgent ? 0 : typeof navigator !== 'undefined' ? navigator.maxTouchPoints : 0;
-      const isIpad = /ipad/.test(ua) || (/macintosh/.test(ua) && touchPoints > 1);
-      const device: IClientInfo['device'] = /mobile|iphone|android/.test(ua) || isIpad ? 'mobile' : 'desktop';
-
-      const isAndroidWebView =
-         /android/.test(ua) && (/wv\)/.test(ua) || (/version\/\d/.test(ua) && /chrome\//.test(ua)));
-      const isIosWebView = /iphone|ipad/.test(ua) && !/safari\//.test(ua);
-      const isWebView = isAndroidWebView || isIosWebView;
-
-      const inApp = this.IN_APP_RULES.find(([re]) => re.test(ua))?.[1];
-      const browser = this.BROWSER_RULES.find(([re]) => re.test(ua))?.[1] ?? 'unknown';
-
-      if (inApp) {
-         return { ...inApp, device, environment: 'in-app' };
-      }
-
-      if (isWebView) {
-         return { browser, device, environment: 'webview' };
-      }
-
-      return { browser, device, environment: 'browser' };
-   }
+   };
 
    static detectPlatform() {
       if (typeof navigator === 'undefined') {
          return 'unknown';
       }
       const ua = navigator.userAgent;
+
       if (/iPhone|iPad|iPod/.test(ua)) {
          return 'ios';
       }
       if (/Android/.test(ua)) {
          return 'android';
       }
+      if (/Macintosh|Mac OS X/.test(ua)) {
+         return 'macos';
+      }
+      if (/Windows NT/.test(ua)) {
+         return 'windows';
+      }
+      if (/CrOS/.test(ua)) {
+         return 'chromeos';
+      }
+      if (/Linux/.test(ua)) {
+         return 'linux';
+      }
+
       return 'unknown';
    }
 

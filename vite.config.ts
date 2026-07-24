@@ -1,12 +1,11 @@
-import babel from '@rolldown/plugin-babel';
 import tailwindcss from '@tailwindcss/vite';
-import react, { reactCompilerPreset } from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig, type PluginOption } from 'vite';
 import { analyzer } from 'vite-bundle-analyzer';
 import svgr from 'vite-plugin-svgr';
 
-const plugins: PluginOption[] = [react(), babel({ presets: [reactCompilerPreset()] }), tailwindcss(), svgr()];
+const plugins: PluginOption[] = [react(), tailwindcss(), svgr()];
 
 // https://vite.dev/config/
 export default defineConfig({
