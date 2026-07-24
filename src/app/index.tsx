@@ -4,7 +4,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import ThemeProvider from '@/providers/theme';
 import history from '@/shared/common/history';
-import ErrorBoundary from '@/shared/components/ui/error-boundary';
+import ErrorBoundary from '@/shared/components/error-boundary.tsx';
 import { persistor, store } from '@/shared/store';
 
 import Auth from './auth';
