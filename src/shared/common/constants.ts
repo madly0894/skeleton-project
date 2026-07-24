@@ -19,7 +19,7 @@ export const URL_EXP =
    // eslint-disable-next-line
     /^((https?|ftp):)?\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i;
 
-export const ERROR_INFORMATIONS: Record<EErrorCode, string> = {
+export const ERROR_INFORMATION: Record<EErrorCode, string> = {
    [EErrorCode.AccountDeletionPending]: 'Account deletion pending',
    [EErrorCode.EmailNotConfirmed]: 'Email not confirmed',
 };
@@ -46,7 +46,7 @@ export const INITIAL_POSITION = {
    index: -1,
 };
 
-export const INFINITE_DELAY = 1200;
+export const AUTO_CLOSE = 3000;
 
 export const FORM_OPTIONS: SetValueConfig = {
    shouldDirty: true,
@@ -54,18 +54,12 @@ export const FORM_OPTIONS: SetValueConfig = {
    shouldValidate: true,
 };
 
-export const PLANS: Record<string, string> = {
-   pro: 'Freelancer',
-   unlimited: 'Business',
-   infinity: 'Enterprise',
-};
-
 export const CURRENCIES: Record<string, string> = {
    AZN: '₼',
-   DOLLAR: '$',
-   EURO: '€',
-   LIRA: '₺',
-   RUBEL: '₽',
+   USD: '$',
+   EUR: '€',
+   // TRY: '₺',
+   // RUB: '₽',
 };
 
 export const TITLES: Record<string, string> = {
@@ -127,6 +121,9 @@ export const ROLE_TYPES: Record<EPermission, string> = {
    [EPermission.Read]: 'share.viewer',
    [EPermission.Write]: 'share.editor',
 };
+
+export const GRID_CLASSNAME =
+   'grid gap-2 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 xxl:grid-cols-8';
 
 export const oAuth = [EAuthType.Google, EAuthType.Apple];
 

@@ -1,15 +1,4 @@
-import type { TLang } from '../i18n/config';
-
-import { EErrorCode, EType } from './enums';
-
-// import icons from './icons';
-
-export interface IBreadcrumb {
-   id?: number;
-   name: string;
-   parent_id?: number;
-   onClick?: (id: number) => void;
-}
+import type { TLang } from '@/shared/i18n/config';
 
 export interface IMeta {
    current_page: number;
@@ -18,8 +7,7 @@ export interface IMeta {
    total_pages: number;
 }
 
-export interface IErrorResponse<T = unknown> {
-   code: EErrorCode;
+export interface IErrorResponse<T = any> {
    message: string;
    data: T;
 }
@@ -27,58 +15,12 @@ export interface IErrorResponse<T = unknown> {
 export interface IPagination<T, U = undefined> {
    data: U extends undefined ? T[] : U;
    pagination: IMeta | null;
-   breadcrumbs?: IBreadcrumb[];
 }
-
-export interface ItemType {
-   key?: string;
-   icon?: React.ReactNode;
-   label?: string;
-   children?: ItemType[]; // Make `children` optional
-   className?: string;
-   type?: string;
-   hidden?: boolean;
-   badge?: number;
-   role?: 'admin';
-}
-
-export type TOpenDialogType = {
-   ids?: number[];
-   type:
-      | 'create'
-      | 'update'
-      | 'upload'
-      | 'cancel'
-      | 'delete'
-      | 'rename'
-      | 'refund'
-      | 'extend'
-      | 'publish'
-      | 'withdraw'
-      | 'tag'
-      | 'sync'
-      | 'grant'
-      | 'share'
-      | 'expire'
-      | 'move'
-      | 'archive'
-      | 'preview'
-      | 'view'
-      | 'video-player'
-      | 'view-pdf';
-   isBreadcrumb?: boolean;
-} | null;
 
 export interface IResponse<T> {
    response: {
       data: T;
    };
-}
-
-export interface ILayoutProps {
-   label?: React.ReactNode;
-   isRequired?: boolean;
-   error?: string;
 }
 
 export interface IOption<T = string> {
@@ -93,8 +35,6 @@ export interface IPaginationRequest {
 
 export interface IQuery extends IPaginationRequest {
    q?: string;
-   sort_order?: string;
-   sort_by?: string;
 }
 
 export interface ICommon {
@@ -102,27 +42,15 @@ export interface ICommon {
    name: string;
 }
 
-export interface IPointerEvent {
-   x: number;
-   y: number;
-   index: number;
-   key?: string;
-}
-
 export interface IParams {
    lang: TLang;
-   item_type?: EType;
    [p: string]: string | undefined;
 }
 
-export interface IModalProps<T = unknown> {
-   open: boolean;
-   onClose: VoidFunction;
+export interface IModalProps<T extends object = object> {
+   onClose?: VoidFunction;
+   open?: boolean;
    data?: T;
-}
-
-export interface IAppleError {
-   error: string;
 }
 
 export interface IClientInfo {
@@ -132,4 +60,4 @@ export interface IClientInfo {
    environment: 'in-app' | 'browser' | 'webview';
 }
 
-// export type TIcon = keyof ReturnType<typeof icons>;
+export type TTheme = 'light' | 'dark';

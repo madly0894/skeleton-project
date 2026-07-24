@@ -10,7 +10,6 @@ export default function useAppRouter() {
 
    return {
       ...location,
-      pathnameWithoutLocale: location.pathnameWithoutLocale,
       navigate: (
          to: string,
          {

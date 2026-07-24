@@ -22,10 +22,13 @@ function notify(): void {
    listeners.forEach(fn => fn());
 }
 
-export function setAuth(type: 'login' | 'logout'): void {
+export function setAuth(type: 'login' | 'logout', isNotify = true): void {
    isAuthenticated = type === 'login';
-   notify();
-   channel.postMessage({ type });
+
+   if (isNotify) {
+      notify();
+      channel.postMessage({ type });
+   }
 }
 
 channel.onmessage = (e: MessageEvent<ChannelMessage>) => {

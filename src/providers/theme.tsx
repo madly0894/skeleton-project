@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-type TTheme = 'light' | 'dark';
+import type { TTheme } from '@/shared/common/models';
 
 interface ThemeContextType {
    theme: TTheme;

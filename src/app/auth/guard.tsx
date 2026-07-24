@@ -11,10 +11,10 @@ const UserGuard: React.FC<
    }>
 > = ({ children, mode }) => {
    const [{ from }] = useAppSearchParams();
-   const { pathname, pathnameWithoutLocale } = useAppLocation();
+   const { pathname, localePathname } = useAppLocation();
    const isAuthenticated = useIsAuthenticated();
 
-   if (pathnameWithoutLocale === '/not-found') {
+   if (pathname === '/not-found') {
       return <>{isAuthenticated ? children : <Outlet />}</>;
    }
 
@@ -23,7 +23,7 @@ const UserGuard: React.FC<
          <Navigate
             to={{
                pathname: getHref('/auth/login'),
-               search: `from=${pathname}`,
+               search: `from=${localePathname}`,
             }}
             replace
          />
