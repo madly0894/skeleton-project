@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router';
 
-import Header from '@/shared/layouts/header';
-import Sidebar from '@/shared/layouts/sidebar';
+import Header from './header';
+import Sidebar from './sidebar';
 
 const RootLayout: React.FC = () => {
    return (

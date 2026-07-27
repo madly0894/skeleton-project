@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { type ExternalToast, toast } from 'sonner';
 
-import { AUTO_CLOSE } from '@/shared/common/constants';
+import { AUTO_CLOSE } from '../common/constants';
 
 type TProps = {
    delay?: number;

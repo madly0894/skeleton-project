@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router';
 
-import ROUTES from '@/shared/common/routes';
-import { getHref } from '@/shared/i18n/utils';
+import ROUTES from '../shared/common/routes';
+import { getHref } from '../shared/i18n/utils';
 
 const isLoadingUserInfo = false;
 const isErrorUserInfo = false;

@@ -5,8 +5,8 @@ import { combineReducers } from '@reduxjs/toolkit';
 // import activityReducer from '@/pages/my-drive/store/slice';
 // import dialogReducer from './slices/dialog/slice';
 // import sidebarReducer from './slices/sidebar/slice';
-import emptySplitApi from './empty-split-api';
 import modalReducer from './slices/modal/slice';
+import emptySplitApi from './empty-split-api';
 
 const appReducers = combineReducers({
    // auth: authReducer,

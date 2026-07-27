@@ -1,12 +1,12 @@
 import { lazy } from 'react';
 import { Navigate, Outlet, Route, Routes as Switch } from 'react-router';
 
-import UserGuard from '@/app/auth/guard';
-import RootLayout from '@/app/layout';
-import ROUTES from '@/shared/common/routes';
-import { getHref } from '@/shared/i18n/utils';
+import UserGuard from './auth/guard';
+import ROUTES from './shared/common/routes';
+import { getHref } from './shared/i18n/utils';
+import RootLayout from './layouts';
 
-const HomePage = lazy(() => import('@/pages/home/page'));
+const HomePage = lazy(() => import('./pages/home/page'));
 
 const Routes: React.FC = () => {
    return (

@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router';
 
-import { removeLanguageCode } from '@/shared/i18n/utils';
+import { removeLanguageCode } from '../i18n/utils';
 
 export default function useAppLocation() {
    const location = useLocation();

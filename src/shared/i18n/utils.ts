@@ -1,4 +1,4 @@
-import type { TLang } from '@/shared/types/models';
+import type { TLang } from '../types/models';
 
 import history from '../common/history';
 

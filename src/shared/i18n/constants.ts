@@ -1,4 +1,4 @@
-import type { TLang } from '@/shared/types/models';
+import type { TLang } from '../types/models';
 
 export const languageKey = 'locale';
 export const defaultNS = 'translation';

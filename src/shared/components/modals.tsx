@@ -1,6 +1,6 @@
 import { cloneElement } from 'react';
 
-import useModal from '@/shared/hooks/useModal';
+import useModal from '../hooks/useModal';
 
 const FuseModals: React.FC = () => {
    const { modals, closeModal } = useModal();

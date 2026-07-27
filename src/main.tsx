@@ -2,8 +2,7 @@ import { createRoot } from 'react-dom/client';
 import { InfoIcon } from 'lucide-react';
 import { Toaster } from 'sonner';
 
-import { AUTO_CLOSE } from '@/shared/common/constants';
-
+import { AUTO_CLOSE } from './shared/common/constants';
 import App from './app';
 
 import './shared/i18n/config';

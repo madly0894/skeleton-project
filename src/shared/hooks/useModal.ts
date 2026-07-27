@@ -1,5 +1,6 @@
 import { closeModal, openModal, selectModals } from '@/shared/store/slices/modal/slice';
-import { useAppDispatch, useAppSelector } from '@/shared/store/hooks';
+
+import { useAppDispatch, useAppSelector } from '../store/hooks';
 
 export default function useModal() {
    const modals = useAppSelector(selectModals);
