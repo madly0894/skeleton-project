@@ -3,7 +3,7 @@ import { type PersistConfig, persistReducer, persistStore } from 'redux-persist'
 
 import type { Action, ThunkAction } from '@reduxjs/toolkit';
 
-import BaseUtils from '../utils/base';
+import BaseUtils from '../utils/base.utils';
 
 import authMiddleware from './auth-middleware';
 import emptySplitApi from './empty-split-api';

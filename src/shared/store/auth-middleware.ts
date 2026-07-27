@@ -4,7 +4,7 @@ import ROUTES from '@/shared/common/routes';
 
 import history from '../common/history';
 import { getHref } from '../i18n/utils';
-import StorageUtils from '../utils/storage';
+import StorageUtils from '../utils/storage.utils';
 
 import emptySplitApi from './empty-split-api';
 

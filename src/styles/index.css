@@ -2,7 +2,7 @@
 
 main {
     grid-template:
-    /*"aside header" 60px*/
+    "aside header" 60px
     "aside section" auto / 388px;
 
     aside {
@@ -27,6 +27,10 @@ main {
 }
 
 /* Sonner styles */
-[data-sonner-toast] [data-icon] {
-    margin-inline: 0 !important;
+[data-sonner-toast] {
+    @apply w-80!;
+
+    [data-icon] {
+        @apply mx-0!;
+    }
 }

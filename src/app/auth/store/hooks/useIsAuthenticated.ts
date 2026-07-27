@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react';
 
-import StorageUtils from '@/shared/utils/storage';
+import StorageUtils from '@/shared/utils/storage.utils';
 
 type ChannelMessage = { type: 'logout' } | { type: 'login' };
 

@@ -1,4 +1,4 @@
-import type { IModalProps } from '@/shared/common/models';
+import type { IModalProps } from '@/shared/types/models';
 
 export interface IInitialState {
    modals: (IModalProps & {

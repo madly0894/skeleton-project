@@ -1,11 +1,11 @@
-import type { IClientInfo } from '../common/models';
+import type { IClientInfo } from '../types/models';
 
 import { CURRENCIES } from '../common/constants';
 import { setHref } from '../i18n/utils';
 
 type InAppInfo = Required<Pick<IClientInfo, 'app' | 'browser'>>;
 
-export default class Utils {
+export default class BaseUtils {
    // ---- STATIC ICON MAPS
    static appIcons = {
       teams: 'teams.svg',
@@ -50,6 +50,18 @@ export default class Utils {
       [/mozilla firefox/i, 'firefox'],
       [/safari/i, 'safari'],
    ];
+
+   static providesList(resultsWithIds: Record<string, never>[] = [], tagType: string, key: string = 'id'): unknown[] {
+      return resultsWithIds
+         ? [
+              ...resultsWithIds.map(item => ({
+                 type: tagType,
+                 id: BaseUtils.getNestedValue(item, key),
+              })),
+              { type: tagType, id: 'LIST' },
+           ]
+         : [{ type: tagType, id: 'LIST' }];
+   }
 
    static isDevMode(): boolean {
       return window.location.hostname === 'filemg-dev.bestcomp.net';

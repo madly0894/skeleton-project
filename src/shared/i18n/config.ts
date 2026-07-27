@@ -7,22 +7,11 @@ import resourcesToBackend from 'i18next-resources-to-backend';
 
 import $api from '../common/axios';
 import history from '../common/history';
-import DateUtils from '../utils/date';
+import DateUtils from '../utils/date.utils';
 
 import dateLocale from './date-locale';
 import { getLanguageCode, removeAllLeadingSlashes, setLanguageCode } from './utils';
-
-export type TLang = 'en' | 'az' | 'ru' | 'tr';
-export const languageKey = 'locale';
-export const defaultNS = 'translation';
-export const fallbackLng = 'en';
-export const languageCodes = ['en', 'az', 'ru', 'tr'];
-export const languages: { key: TLang; label: string; abbr: string }[] = [
-   { key: 'en', label: 'English', abbr: 'Eng' },
-   { key: 'az', label: 'Azərbaycanca', abbr: 'Aze' },
-   { key: 'ru', label: 'Русский', abbr: 'Rus' },
-   { key: 'tr', label: 'Türkce', abbr: 'Tur' },
-];
+import { fallbackLng, languageCodes, defaultNS } from './constants';
 
 const path = removeAllLeadingSlashes(history.location.pathname);
 const arrPath = path.split('/');
@@ -32,21 +21,16 @@ const currentLangWithoutFallbackLng = (!!currentLang && (currentLang === fallbac
 
 const LanguageDetector: LanguageDetectorModule = {
    type: 'languageDetector',
-   init: () => {
-      return setLanguageCode(currentLang);
-   },
-   detect() {
-      return getLanguageCode();
-   },
-   cacheUserLanguage: () => {
+   init: () => setLanguageCode(currentLang),
+   detect: () => getLanguageCode(),
+   cacheUserLanguage: () =>
       queueMicrotask(() => {
          const currentLng = currentLang || fallbackLng;
          history.replace(`${currentLangWithoutFallbackLng}/${pathWithoutLang || path}${history.location.search}`);
          document.documentElement.setAttribute('lang', currentLng);
          $api.defaults.headers.common['Accept-Language'] = currentLng;
          DateUtils.setLocale(dateLocale[currentLng]);
-      });
-   },
+      }),
 };
 
 // the translations

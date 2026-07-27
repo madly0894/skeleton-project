@@ -1,6 +1,6 @@
 import { ErrorBoundary as ErrorComponent, type FallbackProps } from 'react-error-boundary';
 
-import BaseUtils from '@/shared/utils/base';
+import BaseUtils from '@/shared/utils/base.utils';
 
 function fallbackRender({ error, resetErrorBoundary }: FallbackProps) {
    return (

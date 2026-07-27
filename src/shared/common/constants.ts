@@ -1,8 +1,8 @@
 import type { SetValueConfig } from 'react-hook-form';
 
-import type { IOption } from './models';
+import type { IOption } from '../types/models';
 
-import { EAuthType, EByte, EErrorCode, EPeriod, EPermission, EStatus } from './enums';
+import { EAuthType, EByte, EErrorCode, EPeriod, EPermission, EStatus } from '../types/enums';
 
 export const DIGIT_EXP = /^-?\d*(\.\d*)?$/;
 export const NUMBER_EXP = /\D/g;

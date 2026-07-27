@@ -1,6 +1,8 @@
+import type { TLang } from '@/shared/types/models';
+
 import history from '../common/history';
 
-import { fallbackLng, languageCodes, languageKey, languages, type TLang } from './config';
+import { fallbackLng, languageCodes, languageKey, languages } from './constants';
 
 export function getLanguageCode() {
    return localStorage.getItem(languageKey) || fallbackLng;

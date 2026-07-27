@@ -1,9 +1,10 @@
 import { Navigate, Outlet } from 'react-router';
 
-import { useIsAuthenticated } from '@/app/auth/lib/hooks/useIsAuthenticated';
+import { useIsAuthenticated } from '@/app/auth/store/hooks/useIsAuthenticated';
 import useAppLocation from '@/shared/hooks/useAppLocation';
 import useAppSearchParams from '@/shared/hooks/useAppSearchParams';
 import { getHref } from '@/shared/i18n/utils';
+import ROUTES from '@/shared/common/routes';
 
 const UserGuard: React.FC<
    React.PropsWithChildren<{
@@ -11,18 +12,14 @@ const UserGuard: React.FC<
    }>
 > = ({ children, mode }) => {
    const [{ from }] = useAppSearchParams();
-   const { pathname, localePathname } = useAppLocation();
+   const { localePathname } = useAppLocation();
    const isAuthenticated = useIsAuthenticated();
-
-   if (pathname === '/not-found') {
-      return <>{isAuthenticated ? children : <Outlet />}</>;
-   }
 
    if (mode === 'online' && !isAuthenticated) {
       return (
          <Navigate
             to={{
-               pathname: getHref('/auth/login'),
+               pathname: getHref(ROUTES.LOGIN.to),
                search: `from=${localePathname}`,
             }}
             replace
@@ -31,7 +28,7 @@ const UserGuard: React.FC<
    }
 
    if (mode === 'offline' && isAuthenticated) {
-      return <Navigate to={from || getHref('/home')} replace />;
+      return <Navigate to={from || getHref(ROUTES.HOME.to)} replace />;
    }
 
    return <>{children ?? <Outlet />}</>;

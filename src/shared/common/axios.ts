@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 
 import type { InternalAxiosRequestConfig } from 'axios';
 
-import StorageUtils from '../utils/storage';
+import StorageUtils from '../utils/storage.utils';
 
 // import { getToken } from '@/shared/lib/utils/base';
 

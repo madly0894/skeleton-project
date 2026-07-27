@@ -1,5 +1,3 @@
-import type { TLang } from '@/shared/i18n/config';
-
 export interface IMeta {
    current_page: number;
    page_size: number;
@@ -60,4 +58,5 @@ export interface IClientInfo {
    environment: 'in-app' | 'browser' | 'webview';
 }
 
+export type TLang = 'en' | 'az' | 'ru' | 'tr';
 export type TTheme = 'light' | 'dark';

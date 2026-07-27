@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Navigate, Outlet, Route, Routes } from 'react-router';
+import { Navigate, Outlet, Route, Routes as Switch } from 'react-router';
 
 import UserGuard from '@/app/auth/guard';
 import RootLayout from '@/app/layout';
@@ -8,9 +8,9 @@ import { getHref } from '@/shared/i18n/utils';
 
 const HomePage = lazy(() => import('@/pages/home/page'));
 
-const Router: React.FC = () => {
+const Routes: React.FC = () => {
    return (
-      <Routes>
+      <Switch>
          <Route path={ROUTES.LANG} element={<Outlet />}>
             <Route element={<UserGuard mode='offline' />}>
                <Route element={<RootLayout />}>
@@ -28,8 +28,8 @@ const Router: React.FC = () => {
             <Route path={ROUTES.MAINTENANCE.path} element={<Navigate to={getHref(ROUTES.HOME.to)} replace />} />
             <Route path={ROUTES.NOT_FOUND} element={<Navigate to={getHref(ROUTES.ERROR_404.to)} replace />} />
          </Route>
-      </Routes>
+      </Switch>
    );
 };
 
-export default Router;
+export default Routes;
